@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.fullstack.cursofullstack.domain.Categoria;
 import br.com.fullstack.cursofullstack.repositories.CategoriaRepository;
+import br.com.fullstack.cursofullstack.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -17,12 +18,18 @@ public class CategoriaService {
 	
 	public List<Categoria> listarTodos() {
 		List<Categoria> obj = repo.findAll();
+		if(obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Tipo: " + Categoria.class.getName()
+			);
+		}
 		return obj;
 	}
 	
-	public Optional<Categoria> buscar(Integer id) {
+	public Categoria buscar(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj;
+		return obj.orElseThrow(
+				() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id + " Tipo: " + Categoria.class.getName()) 
+		);
 	}
-
 }

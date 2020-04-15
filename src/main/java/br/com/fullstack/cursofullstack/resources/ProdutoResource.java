@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fullstack.cursofullstack.domain.Categoria;
-import br.com.fullstack.cursofullstack.services.CategoriaService;
+import br.com.fullstack.cursofullstack.domain.Produto;
+import br.com.fullstack.cursofullstack.services.ProdutoService;
 
 @RestController
-@RequestMapping(path = "/categorias")
-public class CategoriaResource {
+@RequestMapping(path = "/produtos")
+public class ProdutoResource {
 	
 	@Autowired
-	private CategoriaService service;
+	private ProdutoService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> findAll(){
-		List<Categoria> obj = service.listarTodos();
+		List<Produto> obj = service.findAll();
 		return ResponseEntity.ok().body(obj);
 	}
-	
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> find(@PathVariable Integer id) {
-		Categoria obj = service.buscar(id);
+		Produto obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+
 }
