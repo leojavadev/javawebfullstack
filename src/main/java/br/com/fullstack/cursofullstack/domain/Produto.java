@@ -34,6 +34,10 @@ public class Produto implements Serializable {
 	)
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	@JsonBackReference
+	@ManyToMany(mappedBy = "itens")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
 	public Produto() {
 	}
 
