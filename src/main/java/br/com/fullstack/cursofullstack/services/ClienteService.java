@@ -16,7 +16,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repo;
 	
-	public List<Cliente> listarTodos(){
+	public List<Cliente> findAll(){
 		List<Cliente> lista = repo.findAll();
 		if(lista == null) {
 			throw new ObjectNotFoundException("Nenhum cliente cadastrado! Tipo: " + Cliente.class.getName());
@@ -24,7 +24,7 @@ public class ClienteService {
 		return lista;
 	}
 	
-	public Cliente buscar(Integer id){
+	public Cliente find(Integer id){
 		Optional<Cliente> cliente = repo.findById(id);
 		return cliente.orElseThrow(
 				() -> new ObjectNotFoundException("Cliente não encontrado com o ID informado: ID = " + id + ", Tipo: " + Cliente.class.getName())
