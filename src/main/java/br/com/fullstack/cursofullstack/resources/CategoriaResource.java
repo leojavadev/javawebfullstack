@@ -2,6 +2,7 @@ package br.com.fullstack.cursofullstack.resources;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.fullstack.cursofullstack.domain.Categoria;
+import br.com.fullstack.cursofullstack.dto.CategoriaDTO;
 import br.com.fullstack.cursofullstack.services.CategoriaService;
 
 @RestController
@@ -25,8 +27,9 @@ public class CategoriaResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> findAll(){
 		List<Categoria> obj = service.findAll();
-		return ResponseEntity.ok().body(obj);
-	}
+		List<CategoriaDTO> listDto = obj.stream().map(x -> new CategoriaDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
+	}	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
