@@ -125,7 +125,6 @@ public class CursoFullstackApplication implements CommandLineRunner {
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
-		//clienteRepository.save(cli1);		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
 		
@@ -141,8 +140,6 @@ public class CursoFullstackApplication implements CommandLineRunner {
 		p3.getItens().add(ip2);
 
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
-		//pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
-		//produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 	}
 
 }

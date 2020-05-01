@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import br.com.fullstack.cursofullstack.domain.Categoria;
 import br.com.fullstack.cursofullstack.dto.CategoriaDTO;
