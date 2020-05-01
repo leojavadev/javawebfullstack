@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import br.com.fullstack.cursofullstack.domain.Categoria;
+import br.com.fullstack.cursofullstack.dto.CategoriaDTO;
 import br.com.fullstack.cursofullstack.repositories.CategoriaRepository;
 import br.com.fullstack.cursofullstack.services.exceptions.DataIntegrityException;
 import br.com.fullstack.cursofullstack.services.exceptions.ObjectNotFoundException;
@@ -66,5 +67,9 @@ public class CategoriaService {
 			page, linesPerPage, Direction.valueOf(direction), orderBy
 		);
 		return repo.findAll(pageRequest);
+	}
+	
+	public Categoria fromDto(CategoriaDTO obj) {
+		return new Categoria(obj.getId(), obj.getNome());
 	}
 }
