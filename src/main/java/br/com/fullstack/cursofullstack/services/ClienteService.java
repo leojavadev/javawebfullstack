@@ -25,7 +25,9 @@ public class ClienteService {
 	public List<Cliente> findAll(){
 		List<Cliente> lista = repo.findAll();
 		if(lista == null) {
-			throw new ObjectNotFoundException("Nenhum cliente cadastrado! Tipo: " + Cliente.class.getName());
+			throw new ObjectNotFoundException(
+					"Nenhum cliente cadastrado! Tipo: " + Cliente.class.getName()
+			);
 		}
 		return lista;
 	}
@@ -33,7 +35,9 @@ public class ClienteService {
 	public Cliente find(Integer id){
 		Optional<Cliente> cliente = repo.findById(id);
 		return cliente.orElseThrow(
-				() -> new ObjectNotFoundException("Cliente não encontrado com o ID informado: ID = " + id + ", Tipo: " + Cliente.class.getName())
+				() -> new ObjectNotFoundException(
+					"Cliente não encontrado com o ID informado: ID = " + id + ""
+							+ ", Tipo: " + Cliente.class.getName())
 		);
 	}
 	
@@ -47,8 +51,9 @@ public class ClienteService {
 	}
 	
 	public Cliente update(Cliente obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
 	}
 	
 	public void delete(Integer id) {
@@ -69,5 +74,10 @@ public class ClienteService {
 			page, linesPerPage, Direction.valueOf(direction), orderBy
 		);
 		return repo.findAll(pageRequest);
+	}
+	
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 }
