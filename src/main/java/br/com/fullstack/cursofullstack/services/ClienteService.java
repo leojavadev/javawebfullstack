@@ -95,8 +95,8 @@ public class ClienteService {
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException(
-				"Para apagar um cliente, é necessário excluir, primeiro,"
-				+ " os seus pedidos, telefone e endereço"
+				"Para apagar um cliente, é necessário excluir"
+				+ " os seus pedidos!"
 			);
 		}
 	}
