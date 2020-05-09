@@ -1,6 +1,5 @@
 package br.com.fullstack.cursofullstack.services;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +17,6 @@ import br.com.fullstack.cursofullstack.domain.Endereco;
 import br.com.fullstack.cursofullstack.domain.enums.TipoCliente;
 import br.com.fullstack.cursofullstack.dto.ClienteDTO;
 import br.com.fullstack.cursofullstack.dto.ClienteNewDTO;
-import br.com.fullstack.cursofullstack.repositories.CidadeRepository;
 import br.com.fullstack.cursofullstack.repositories.ClienteRepository;
 import br.com.fullstack.cursofullstack.repositories.EnderecoRepository;
 import br.com.fullstack.cursofullstack.services.exceptions.DataIntegrityException;
