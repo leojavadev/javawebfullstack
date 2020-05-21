@@ -102,6 +102,10 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 
+	/*public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}*/
+
 	public Set<String> getTelefones() {
 		return telefones;
 	}
@@ -116,10 +120,6 @@ public class Cliente implements Serializable {
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
 	}
 
 	public List<Pedido> getPedidos() {
