@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.fullstack.cursofullstack.services.DBService;
-import br.com.fullstack.cursofullstack.services.EmailService;
-import br.com.fullstack.cursofullstack.services.SmtpEmailService;
 
 @Configuration
 @Profile("dev")
@@ -32,8 +30,8 @@ public class DevConfig {
 		return true;
 	}
 	
-	@Bean
+	/*@Bean
 	public EmailService emailService() {
 		return new SmtpEmailService(); 
-	}
+	}*/
 }

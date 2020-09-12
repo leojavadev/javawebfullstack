@@ -11,7 +11,6 @@ import br.com.fullstack.cursofullstack.domain.ItemPedido;
 import br.com.fullstack.cursofullstack.domain.PagamentoComBoleto;
 import br.com.fullstack.cursofullstack.domain.Pedido;
 import br.com.fullstack.cursofullstack.domain.enums.EstadoPagamento;
-import br.com.fullstack.cursofullstack.repositories.ClienteRepository;
 import br.com.fullstack.cursofullstack.repositories.ItemPedidoRepository;
 import br.com.fullstack.cursofullstack.repositories.PagamentoRepository;
 import br.com.fullstack.cursofullstack.repositories.PedidoRepository;
@@ -37,6 +36,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public Optional<Pedido> find(Integer id) {
 		Optional<Pedido> pedido = repo.findById(id);
@@ -68,7 +70,8 @@ public class PedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		obj = repo.save(obj);
-		System.out.print(obj);
+		//System.out.print(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 }
