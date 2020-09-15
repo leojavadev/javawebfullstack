@@ -70,8 +70,13 @@ public class PedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		obj = repo.save(obj);
+		
+		/** Imprime os dados do pedido no console */
 		//System.out.print(obj);
+		
+		/** Mostra os dados do pedido no log do spring (no perfil Test) ou envia por e-mail (no perfil Dev)  */
 		emailService.sendOrderConfirmationEmail(obj);
+		
 		return obj;
 	}
 }
