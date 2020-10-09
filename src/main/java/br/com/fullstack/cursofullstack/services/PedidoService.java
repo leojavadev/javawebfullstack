@@ -77,6 +77,8 @@ public class PedidoService {
 		/** Mostra os dados do pedido no log do spring (no perfil Test) ou envia por e-mail (no perfil Dev)  */
 		emailService.sendOrderConfirmationEmail(obj);
 		
+		emailService.sendOrderConfirmationHtmlEmail(obj);
+		
 		return obj;
 	}
 }
