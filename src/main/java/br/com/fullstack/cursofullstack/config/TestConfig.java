@@ -36,10 +36,5 @@ public class TestConfig {
 	public JavaMailSender javaMailSender() {
 		return new JavaMailSenderImpl();
 	}
-	
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 
 }

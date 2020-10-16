@@ -37,9 +37,4 @@ public class DevConfig {
 	public EmailService emailService() {
 		return new SmtpEmailService(); 
 	}
-	
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
 }
