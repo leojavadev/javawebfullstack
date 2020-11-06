@@ -15,11 +15,14 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.fullstack.cursofullstack.domain.Cidade;
 import br.com.fullstack.cursofullstack.domain.Cliente;
 import br.com.fullstack.cursofullstack.domain.Endereco;
+import br.com.fullstack.cursofullstack.domain.enums.Perfil;
 import br.com.fullstack.cursofullstack.domain.enums.TipoCliente;
 import br.com.fullstack.cursofullstack.dto.ClienteDTO;
 import br.com.fullstack.cursofullstack.dto.ClienteNewDTO;
 import br.com.fullstack.cursofullstack.repositories.ClienteRepository;
 import br.com.fullstack.cursofullstack.repositories.EnderecoRepository;
+import br.com.fullstack.cursofullstack.resources.exceptions.AuthorizationException;
+import br.com.fullstack.cursofullstack.security.UserSS;
 import br.com.fullstack.cursofullstack.services.exceptions.DataIntegrityException;
 import br.com.fullstack.cursofullstack.services.exceptions.ObjectNotFoundException;
 
@@ -49,6 +52,11 @@ public class ClienteService {
 	}
 	
 	public Cliente find(Integer id){
+		UserSS user = UserService.authenticated();
+		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Optional<Cliente> cliente = repo.findById(id);
 		return cliente.orElseThrow(
 				() -> new ObjectNotFoundException(
