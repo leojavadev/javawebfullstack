@@ -1,5 +1,6 @@
 package br.com.fullstack.cursofullstack.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.fullstack.cursofullstack.domain.Cidade;
 import br.com.fullstack.cursofullstack.domain.Cliente;
@@ -40,6 +42,9 @@ public class ClienteService {
 	
 	@Autowired
 	private CidadeService cidadeService;
+	
+	@Autowired
+	private S3Service s3Service;
 	
 	public List<Cliente> findAll(){
 		List<Cliente> lista = repo.findAll();
@@ -121,5 +126,9 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return s3Service.uploadFile(multipartFile);
 	}
 }
