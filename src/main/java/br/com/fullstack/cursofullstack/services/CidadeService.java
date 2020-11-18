@@ -1,5 +1,6 @@
 package br.com.fullstack.cursofullstack.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class CidadeService {
 			() -> new ObjectNotFoundException("Cidade não encontrada com o ID informado. ID " + id
 				+ ", Tipo: " + Cidade.class.getName())
 		);
+	}
+	
+	public List<Cidade> findByEstado(Integer estadoId){
+		return repo.findCidades(estadoId);
 	}
 }
